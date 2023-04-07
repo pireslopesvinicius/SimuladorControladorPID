@@ -12,10 +12,11 @@ FPS = 30
 
 setpoint = 1050
 temperature = 0
+increment = 10
 
-kp = 0
-ki = 0
-kd = 0
+kp = 2
+ki = 3
+kd = 1
 
 p = 0
 i = 0
@@ -31,6 +32,13 @@ while run:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             run = False
+    
+    keys = pygame.key.get_pressed()
+
+    if keys[pygame.K_UP]:
+        setpoint += increment
+    if keys[pygame.K_DOWN]:
+        setpoint -= increment
 
     error = setpoint - temperature
     last_error = error
